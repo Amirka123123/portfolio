@@ -11,7 +11,9 @@
         </a>&nbsp;
         {% endfor %}
     </small>
-    <p>{{ post.body | linebreaks }}</p>
+    <div class="blog_frame">
+        <p>{{ post.body | linebreaks }}</p>
+    </div>
     <h3>Leave a comment:</h3>
     <form action="/blog/{{ post.pk }}/" method="post">
         {% csrf_token %}
@@ -24,13 +26,15 @@
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
     <h3>Comments:</h3>
-    {% for comment in comments %}
-    <p>
-        On {{comment.created_on.date }}&nbsp;
-        <b>{{ comment.author }}</b> wrote:
-    </p>
-    <p>{{ comment.body }}</p>
-    <hr>
-    {% endfor %}
+    <div class="comments_frame">
+        {% for comment in comments %}
+        <p>
+            On {{comment.comment_date }};
+            <b>{{ comment.author }}</b> wrote:
+        </p>
+        <p>{{ comment.body }}</p>
+        <hr>
+        {% endfor %}
+    </div>
 </div>
 {% endblock %}
